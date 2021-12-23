@@ -45,7 +45,7 @@ const GetAll = () => {
                 onClick={(e) => e.currentTarget.classList.toggle("flipped")}
               >
                 <div className="card-front">
-                  <img className="card-image" src={elem.image} alt="" />
+                  <img className="card-image" src={elem.image || `https://rickandmortyapi.com/api/character/avatar/19.jpeg` } alt="" />
                   <h2 className="card-name">{elem.name}</h2>
                 </div>
                 <div className="card-back">

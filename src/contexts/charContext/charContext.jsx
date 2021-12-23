@@ -15,12 +15,12 @@ const CharProvider = ({ children }) => {
     useEffect(() => {
         axios.get(urlGetApi)
             .then(res => {
-                setChars([...chars,...res.data.results])
+                setChars(prev=>[...prev,...res.data.results])
             })
             .catch(err => console.log(err))
         axios.get(urlGetDB)
         .then(res => {
-            setChars([...chars,...res.data.data])
+            setChars(prev=> [...prev,...res.data.data])
         })
         .catch(err => console.log(err))    
 
