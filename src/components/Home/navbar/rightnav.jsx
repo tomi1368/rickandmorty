@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useContext, useEffect, useState} from "react";
 import UserContext from "../../../contexts/userContext/UserContext";
-import GetAllUsers from "../../Users/GetAllUsers/GetAllUsers";
+import GetAllUsers from "../../Users/getAllUsers/GetAllUsers";
 const Ul = styled.ul`
   list-style: none;
   display: flex;
