@@ -71,7 +71,7 @@ const Register = () => {
       <motion.div variants={portal} className="portal" animate="animate">
         <motion.img
           className="img"
-          src="src\portal-rick-and-morty.gif"
+          src="/src/portal-rick-and-morty.gif"
         ></motion.img>
       </motion.div>
       <div className="form-user bg">

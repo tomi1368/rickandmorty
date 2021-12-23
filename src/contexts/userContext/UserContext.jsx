@@ -21,7 +21,7 @@ const UserProvider = ({ children }) => {
       url: "https://serverprueba2.herokuapp.com/private",
       headers: {
         Authorization: `Bearer ${token}`,
-      },
+      }, //base url axios y hacer la verificacion en los distintos componentes.
     })
       .then((res) => {
         setUserInfo(res.data.user);
@@ -32,7 +32,7 @@ const UserProvider = ({ children }) => {
           localStorage.removeItem("UserToken");
         setIsLogged(false);
         setUserInfo({username:"",email:""}); 
-    }
+    } //Verifico los datos donde necesito
       });
   }, [location]);
 

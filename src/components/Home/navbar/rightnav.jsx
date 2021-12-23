@@ -25,6 +25,8 @@ const Ul = styled.ul`
   align-items: center;
 `;
 
+
+
 const RightNavbar = ({ open }) => {
     const {isLogged,setIsLogged,userInfo,setUserInfo} = useContext(UserContext)
     const [data,setDataUser] = useState(userInfo)
