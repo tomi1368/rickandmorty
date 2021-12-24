@@ -4,6 +4,8 @@ import { Formik, Form, Field } from "formik";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Portal from "../../portal-rick-and-morty.gif"
+
 
 function errorHandle(errors) {
   return {
@@ -69,7 +71,7 @@ const Login = () => {
       >
         <motion.img
           className="img"
-          src="/src/portal-rick-and-morty.gif"
+          src={Portal}
         ></motion.img>
       </motion.div>
       <div className="form-user bg">

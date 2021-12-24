@@ -4,6 +4,7 @@ import "./Register.scss";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import Portal from "../../portal-rick-and-morty.gif"
 
 function errorHandle(errors) {
   return {
@@ -71,7 +72,7 @@ const Register = () => {
       <motion.div variants={portal} className="portal" animate="animate">
         <motion.img
           className="img"
-          src="/src/portal-rick-and-morty.gif"
+          src={Portal}
         ></motion.img>
       </motion.div>
       <div className="form-user bg">
