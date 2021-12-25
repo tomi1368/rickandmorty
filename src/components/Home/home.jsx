@@ -8,7 +8,6 @@ import "../../scss/base/_home-bg.scss";
 
 export default function HomePage() {
   const [modalInfo, setModalInfo] = useState(null);
-
   return (
     <div className="home-container">
       <div className="home-bg">

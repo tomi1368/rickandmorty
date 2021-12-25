@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import Portal from "../../portal-rick-and-morty.gif"
+import { useState } from "react";
 
 function errorHandle(errors) {
   return {
@@ -43,13 +44,18 @@ const Schema = Yup.object().shape({
     .max(40, "Password must not exceed 40 characters"),
 });
 
-const registerUser = (body, nav) => {
+const registerUser = (body, nav,setError) => {
   axios
     .post("https://serverprueba2.herokuapp.com/users/register", body)
     .then((res) => {
       nav("/login");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      setError(true)
+      setTimeout(()=>{
+        setError(false)
+      },5000)
+    });
 };
 
 const portal = {
@@ -66,7 +72,7 @@ const portal = {
 const Register = () => {
   const initialValue = { username: "", email: "", password: "" };
   const navigate = useNavigate();
-
+  const [error,setError] = useState(false)
   return (
     <>
       <motion.div variants={portal} className="portal" animate="animate">
@@ -80,11 +86,15 @@ const Register = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 2, ease: "easeInOut" } }}
         >
+          {
+            error && 
+            <div className="modalError">Usuario ya existente / Error al crear usuario</div>
+          }
           <Formik
             initialValues={initialValue}
             validationSchema={Schema}
             onSubmit={(v) => {
-              registerUser(v, navigate);
+              registerUser(v, navigate,setError);
             }}
           >
             {({ errors }) => {

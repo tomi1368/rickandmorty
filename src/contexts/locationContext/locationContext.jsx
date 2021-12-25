@@ -17,12 +17,12 @@ const LocationProvider = ({ children }) => {
     useEffect(() => {
         axios.get(urlLocationApi)
             .then(res => {
-                setLocations([...locations, ...res.data.results])
+                setLocations(prev=>[...prev, ...res.data.results])
             })
             .catch(err => console.error(err))
         axios.get(urlLocation)
             .then(res => {
-                setLocations([...locations, ...res.data.data])
+                setLocations(prev=>[...prev, ...res.data.data])
             })
             .catch(err => console.error(err))
     }, [])

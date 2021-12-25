@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Portal from "../../portal-rick-and-morty.gif"
-
+import Portal from "../../portal-rick-and-morty.gif";
 
 function errorHandle(errors) {
   return {
@@ -47,20 +46,26 @@ const portal = {
   },
 };
 
-const tokenStore = (body, nav) => {
+const tokenStore = (body, nav, setError) => {
   axios
     .post("https://serverprueba2.herokuapp.com/users/login", body)
     .then((res) => {
       localStorage.setItem("UserToken", res.data.token);
       nav("/");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      setError(true);
+      console.log("hola");
+      setTimeout(() => {
+        setError(false);
+      }, 5000);
+    });
 };
 
 const Login = () => {
   const initialValue = { username: "", email: "", password: "" };
   const navigate = useNavigate();
-
+  const [error, setError] = useState(false);
   return (
     <>
       <motion.div
@@ -69,12 +74,14 @@ const Login = () => {
         initial="initial"
         animate="animate"
       >
-        <motion.img
-          className="img"
-          src={Portal}
-        ></motion.img>
+        <motion.img className="img" src={Portal}></motion.img>
       </motion.div>
       <div className="form-user bg">
+        {error && (
+          <div className="modalError">
+            Usuario no existente / Error al iniciar sesion
+          </div>
+        )}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 2, ease: "easeInOut" } }}
@@ -83,7 +90,7 @@ const Login = () => {
             initialValues={initialValue}
             validationSchema={Schema}
             onSubmit={(v) => {
-              tokenStore(v, navigate);
+              tokenStore(v, navigate, setError);
             }}
           >
             {({ errors }) => {
